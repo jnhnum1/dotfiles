@@ -1,25 +1,24 @@
 (message "* loading dotemacs")
-
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-(add-hook 'org-mode-hook #'toggle-word-wrap)
-
-;; OS type
-(defvar ms-windows (eq system-type 'windows-nt) "MS Windows")
-(defvar linux (eq system-type 'gnu/linux) "Linux")
-(defvar mac-osx (eq system-type 'darwin) "OSX")
+(select-frame-set-input-focus (selected-frame))
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
-
-
 ;; Adding MELPA repo of packages
-(add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(require 'org)
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+(setq org-startup-indented t)
+
+;; OS type
+(defvar ms-windows (eq system-type 'windows-nt) "MS Windows")
+(defvar linux (eq system-type 'gnu/linux) "Linux")
+(defvar mac-osx (eq system-type 'darwin) "OSX")
 
 ;; Auctex config
 (setq TeX-auto-save t)
@@ -38,16 +37,15 @@
   )
 
  (mac-osx
+  ;; setting font
+  (set-frame-font "Monaco-24" nil t)
   ;; customizing path for LaTeX
   (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin"))
-  ;; customizing path for Coq
-  (setenv "PATH" (concat (getenv "PATH") ":/Applications/CoqIDE_8.7.2.app/Contents/Resources/bin"))
   ;; option -b highlights the current line; option -g opens Skim in the background
   (message "setting Skim as PDF viewer")
   (setq TeX-view-program-selection '((output-pdf "Skim")))
   (setq TeX-view-program-list
-	'(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %o %b")))
-  )
+	'(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %o %b")))  )
  )
 
 ;; use reftex
@@ -68,15 +66,15 @@
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (delete-selection-mode)
-(setq ring-bell-function 'ignore)
+;; (setq ring-bell-function 'ignore)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mac-option-modifier 'meta)
- '(package-selected-packages '(auctex))
- '(safe-local-variable-values '((TeX-master . main))))
+ '(package-selected-packages '(org-roam auctex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

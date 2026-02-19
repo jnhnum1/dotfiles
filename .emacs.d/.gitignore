@@ -1,0 +1,20 @@
+# Package manager
+elpa/
+
+# Auto-save and backup files
+auto-save-list/
+\#*\#
+*~
+*.swp
+
+# Compiled elisp
+*.elc
+
+# Runtime/state files
+bookmarks
+url/
+tutorial/
+recentf
+transient/
+eshell/
+.mc-lists.el
