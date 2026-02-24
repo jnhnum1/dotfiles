@@ -9,6 +9,7 @@
 ;; Adding MELPA repo of packages
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+(which-key-mode)
 (require 'org)
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
@@ -56,28 +57,14 @@
 (add-hook 'TeX-mode-hook
 	  (lambda ()
 	    (progn
-	      (setq fill-column 80)
 	      (turn-on-auto-fill)
 	      (electric-indent-mode 1))))
 
 ;; configuring emacs
 (message "* configuring Emacs")
-(setq inhibit-splash-screen t)
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (delete-selection-mode)
 ;; (setq ring-bell-function 'ignore)
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(org-roam auctex)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(load "~/.emacs.d/emacs-custom.el")
