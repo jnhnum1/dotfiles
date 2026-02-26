@@ -1,0 +1,11 @@
+# Emacs lock files (symlinks)
+.#*
+
+# Emacs auto-save files
+\#*\#
+
+# Emacs backup files
+*~
+
+# Legacy init file (now using .emacs.d/init.el)
+.emacs
