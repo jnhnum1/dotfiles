@@ -55,6 +55,19 @@
 
 (use-package eat)
 
+(use-package inheritenv
+  :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
+
+(use-package vterm)
+
+(use-package claude-code
+  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+  :config
+  (claude-code-mode)
+  :bind-keymap ("C-c C-'" . claude-code-command-map)
+  :bind
+  (:repeat-map my-claude-code-map ("M" . claude-code-cycle-mode)))
+
 (use-package tex
   :ensure auctex
   :hook ((LaTeX-mode . turn-on-reftex)
