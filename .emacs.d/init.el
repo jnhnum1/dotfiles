@@ -49,6 +49,16 @@
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
   :custom
+  (org-default-notes-file "~/org/todos.org")
+  (org-agenda-files '("~/org/"))
+  (org-capture-templates
+   '(("t" "Todo" entry (file "~/org/todos.org")
+      "* TODO %?\n  %U\n  %a")
+     ("p" "Pomodoro" entry (file "~/org/pomodoros.org")
+      "* TODO %?\n  :PROPERTIES:\n  :Start:    %T\n  :Estimate: 1\n  :Actual:   0\n  :END:\n  %a\n** Interruptions\n** Review")
+     ("n" "Note" entry (file "~/org/notes.org")
+      "* %?\n  %U")))
+  (org-log-done 'time)
   (org-startup-indented t)
   (org-startup-folded 'overview)
   (org-startup-with-inline-images t)
