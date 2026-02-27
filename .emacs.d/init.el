@@ -24,6 +24,7 @@
 ;;; --- General editor settings ---
 
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (delete-selection-mode)
 
@@ -48,7 +49,11 @@
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
   :custom
-  (org-startup-indented t))
+  (org-startup-indented t)
+  (org-startup-folded 'overview)
+  (org-startup-with-inline-images t)
+  (org-pretty-entities t)
+  (org-hide-emphasis-markers t))
 
 (use-package org-roam
   :after org)
@@ -57,8 +62,6 @@
 
 (use-package inheritenv
   :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
-
-(use-package vterm)
 
 (use-package claude-code
   :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
